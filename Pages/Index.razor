@@ -1,0 +1,37 @@
+﻿@page "/"
+
+<div class="container-fluid py-3 flex-n-grow">
+    <div class="vstack gap-3 flex-n-grow">
+        <div class="hstack gap-3">
+            <div class="ms-auto"></div>
+
+            <RatingButton Mini />
+            <LightThemePicker />
+            <LanguageSelector Mini />
+        </div>
+
+        <div class="vstack gap-3 grow-n-scroll">
+            <div class="text-center">
+                <TutorialBanner />
+            </div>
+
+            <div>
+                <MdButton @onclick="() => ++counter"
+                          ButtonStyle="MdButtonStype.Tonal">
+                    <MdIcon slot="@(MdButton.IconSlot)">touch_app</MdIcon>
+                    Tap Me!
+                </MdButton>
+            </div>
+            <div>You tapped me @(counter) times.</div>
+
+            <div>@("Demo_Html_DeleteThis".Loc())</div>
+
+            <div>@("Demo_Html_DeleteThis".LocHtml())</div>
+
+            @for (int i = 0; i < 100; i++)
+            {
+                <div>Scrollable content</div>
+            }
+        </div>        
+    </div>
+</div>

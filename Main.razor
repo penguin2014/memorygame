@@ -1,0 +1,27 @@
+﻿<ErrorBoundary @ref="err">
+    <ChildContent>
+        <Router AppAssembly="@typeof(Main).Assembly">
+            <Found Context="routeData">
+                <RouteView RouteData="@routeData" DefaultLayout="@typeof(MaterialLayout)" />
+                <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            </Found>
+            <NotFound>
+                <LayoutView Layout="@typeof(MaterialLayout)">
+                    <p role="alert">
+                        Sorry, there's something wrong.
+                        <a href="/">Try Again</a>
+                    </p>
+                </LayoutView>
+            </NotFound>
+        </Router>
+    </ChildContent>
+    <ErrorContent>
+        <MauiMaterialCommon.Components.ErrorDialog Exception="context" OnRecover="() => err.Recover()" />
+    </ErrorContent>
+</ErrorBoundary>
+
+@code {
+
+    ErrorBoundary err = null!;
+
+}

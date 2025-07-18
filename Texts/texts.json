@@ -1,0 +1,11 @@
+{
+    "Title": "memorygame",
+    "Demo_Html_DeleteThis": "<div><strong>This is a localized HTML text</strong>. <em>Please delete this entry in your <code>texts.json</code></em></div>",
+
+    "TutTitle0": "Onboarding Title 1",
+    "TutTitle1": "Onboarding Title 2",
+    "TutTitle2": "Onboarding Title 3",
+    "TutContent0": "With Flashlight, you can light up any dark place with just a tap.",
+    "TutContent1": "Fun disco mode that makes your phone flash in different colors and patterns.",
+    "TutContent2": "Send Morse code messages using your phone’s LED. Useful in emergencies."
+}

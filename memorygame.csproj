@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<!-- Set to true for iOS Entitlements -->
+		<HasEntitlements>false</HasEntitlements>
+
+		<!-- CodesignProvision for iOS & Mac -->
+		<IosProvisionName>memorygame(iOS Distro)</IosProvisionName>
+		<MacProvisionName>memorygame(Mac Distro)</MacProvisionName>
+
+		<!-- Quick switches for setting a single build framework -->
+		<OnlyWindows>false</OnlyWindows>
+		<OnlyAndroid>false</OnlyAndroid>
+		<OnlyIos>false</OnlyIos>
+	</PropertyGroup>
+
+	<Import Project="../Targets/MauiApp.targets" />
+	<!--Uncomment for External Login (you still need to install MauiMaterialCommon.ExternalLogin):
+	<Import Project="../Targets/MauiExternalLogin.targets" />-->
+	<!--Uncomment for Firebase (you still need to install MauiMaterialCommon.MauiFirebase): 
+	<Import Project="../Targets/MauiFirebaseApp.targets" />-->
+	<!--Uncomment for TypeScript (active on Windows + Debug builds only):
+	<Import Project="../Targets/CommonUtilsTypescript.targets" />-->
+
+	<PropertyGroup>
+		<!-- Display name -->
+		<ApplicationTitle Condition="$(IsWindows)">memorygame</ApplicationTitle>
+		<ApplicationTitle Condition="$(IsAndroid)">memorygame</ApplicationTitle>
+		<ApplicationTitle Condition="$(IsIos) Or $(IsMacCatalyst)">memorygame</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId Condition="$(IsWindows)">com.hopebestsoftware.memorygame</ApplicationId>
+		<ApplicationId Condition="(!$(IsDebug) Or '$(ApplicationId)'=='') And $(IsAndroid)">com.hopebestsoftware.openaidemo</ApplicationId>
+		<ApplicationId Condition="(!$(IsDebug) Or '$(ApplicationId)'=='') And ($(IsIos) Or $(IsMacCatalyst))">com.hopebestsoftware.memorygame</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+		<ApplicationVersion>100</ApplicationVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Internal Common Lib -->
+		<PackageReference Include="MauiMaterialCommon" Version="8.7.4" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<TargetFrameworks></TargetFrameworks>
+		<TargetFrameworks Condition="$(IsHostWindows)">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks Condition="$(IsHostWindows)">$(TargetFrameworks);net8.0-android</TargetFrameworks>
+		<TargetFrameworks>$(TargetFrameworks);net8.0-ios</TargetFrameworks>
+		<TargetFrameworks>$(TargetFrameworks);net8.0-maccatalyst</TargetFrameworks>
+
+		<TargetFrameworks Condition="$(OnlyAndroid) And $(IsDebug)">net8.0-android</TargetFrameworks>
+		<TargetFrameworks Condition="$(OnlyIos) And $(IsDebug)">net8.0-ios</TargetFrameworks>
+		<TargetFrameworks Condition="$(OnlyWindows) And $(IsDebug)">net8.0-windows10.0.19041.0</TargetFrameworks>
+	</PropertyGroup>
+</Project>
